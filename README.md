@@ -15,13 +15,19 @@ Can be used with almost any continuous data matrix that has corresponding metada
 ## Output Files  
 3 output files are generated:  
 1. output_name_pca_matrix_output.csv  
-2. output_name__metadata_sorted_output.csv  
+2. output_name_metadata_sorted_output.csv  
 3. output_name.pdf  
 
 
 ## Required Inputs
 * counts in raw counts,  FPKM, or TPM units for all genes/isoform used in experiment for every sample
-* metadata file where metrics are listed for every sample in experiment
+* metadata file where metrics are listed for every sample in experiment  
+
+The counts data should be formatted as follows in **CSV format**:  
+![alt text](https://github.com/tbrunetti/PCA_QC/blob/develop/counts_file_format.png "counts file format")  
+
+The metadata file should be formatted as follows in **CSV format**:  
+![alt text](https://github.com/tbrunetti/PCA_QC/blob/develop/metadata_file_format.png "metadata file format")  
 
 ## Running PCA-dynamic.R with test data
 
