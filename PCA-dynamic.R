@@ -262,11 +262,11 @@ model_pcs <- function(pca_matrix, metadata_file, output_name, cat_vars, num_vars
 ##        val_user_input(verification_1)                                      ##
 ################################################################################ 
 get_user_input <- function(){
-  cat("Full path to counts file: ")
+  cat("Full path to counts file (no whitespaces): ")
   count_file <- trimws(readLines("stdin", n=1), which="both")
   cat("You entered the following: ", count_file)
   cat('\n')
-  cat('Is this correct? (Y/N/Q)')
+  cat('Is this correct? (Y/N/Q) ')
   verification_1 <- trimws(readLines('stdin', n=1), which="both")
   return(val_user_input(counts_file = count_file, verification_1=verification_1))
 }
@@ -309,11 +309,11 @@ val_user_input <- function(counts_file, verification_1){
 ##        verifcation                                                         ##
 ################################################################################ 
 get_metadata <- function(){
-  cat("Full path to meta data file: ")
+  cat("Full path to meta data file (no whitespaces): ")
   metadata_file <- trimws(readLines('stdin', n=1), which="both")
   cat("You entered the following: ", metadata_file)
   cat("\n")
-  cat("Is this correct? (Y/N/Q)")
+  cat("Is this correct? (Y/N/Q) ")
   verification_2 <- trimws(readLines('stdin', n=1), which="both")
   print(metadata_file)
   print(verification_2)
@@ -337,7 +337,7 @@ output_file <- function(counts_file, metadata_file){
   output_file <- trimws(readLines("stdin", n=1), which="both")
   cat("You entered the following: ", output_file)
   cat('\n')
-  cat('Is this correct? (Y/N/Q)')
+  cat('Is this correct? (Y/N/Q) ')
   verification_output <- trimws(readLines('stdin', n=1), which="both")
   print(verification_output)
   if ((toupper(verification_output) == "YES") | (toupper(verification_output) == 'Y')){
