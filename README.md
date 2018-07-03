@@ -1,29 +1,29 @@
-#PCA_QC
+# PCA_QC
 dynamic correlation analysis of PCs with metadata for QC metrics
 
 A way to look at whether the first 10 or n PCs in your dataset correlate with any measured metadata metrics
 
 Can be used with almost any continuous data matrix that has corresponding metadata.  Primarily built for use with RNA-seq data.  Run can be performed on a local standard copmuter; no HPC required.
 
-##Required R libraries  
+## Required R libraries  
 * factoextra
 * ggfortify
 * ggplot2
 * data.table
 * gplots
 
-##Output Files  
+## Output Files  
 3 output files are generated:  
 1. output_name_pca_matrix_output.csv  
 2. output_name__metadata_sorted_output.csv  
 3. output_name.pdf  
 
 
-##Required Inputs
+## Required Inputs
 * counts in raw counts,  FPKM, or TPM units for all genes/isoform used in experiment for every sample
 * metadata file where metrics are listed for every sample in experiment
 
-##Running PCA-dynamic.R with test data
+## Running PCA-dynamic.R with test data
 
 To initiate the script, run the following on the command line:
 ```
