@@ -3,7 +3,7 @@ dynamic correlation analysis of PCs with metadata for QC metrics
 
 A way to look at whether the first 10 or n PCs in your dataset correlate with any measured metadata metrics
 
-Can be used with almost any continuous data matrix that has corresponding metadata.  Primarily built for use with RNA-seq data.  Run can be performed on a local standard copmuter; no HPC required.
+Can be used with almost any continuous data matrix that has corresponding metadata.  Primarily built for use with RNA-seq data.  Run can be performed on a local standard copmuter; no HPC required.  If running on HPC, please use in interactive mode.
 
 ## Required R libraries  
 * factoextra
@@ -42,7 +42,7 @@ Name of output file (no whitespaces): test_set/results/test_data_output
 Is this correct? (Y/N/Q) Y
 ```
 
-This will print a some output (for logging and error purposes) to the screen.  All of the actualy output files will be in the output file location the user specified.  In this case is is test_set/results/ with all output files containing the prefix **test_data_ouput**.
+This will print a some output (for logging and error purposes) to the screen.  All of the actual output files will be in the output file location the user specified.  In this case is is test_set/results/ with all output files containing the prefix **test_data_ouput**.
 
 
 
