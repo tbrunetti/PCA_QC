@@ -14,9 +14,9 @@ Can be used with almost any continuous data matrix that has corresponding metada
 
 ## Output Files  
 3 output files are generated:  
-1. output_name_pca_matrix_output.csv  
-2. output_name_metadata_sorted_output.csv  
-3. output_name.pdf  
+1. output_name_pca_matrix_output.csv  --provided so you can easily test your regression by looking at residuals
+2. output_name_metadata_sorted_output.csv  --provided so you can easily test your regression by looking at residuals
+3. output_name.pdf 
 
 
 ## Required Inputs
@@ -49,10 +49,10 @@ Rscript PCA-dynamic.R
 This will prompt the user for file information and output directory and prefix information.  Below is an example for the provided test data:
 
 ```
-Full path to counts file: test_set/input_files/test_counts_file.csv
+Full path to counts file (no whitespaces): test_set/input_files/test_counts_file.csv
 You entered the following:  test_set/input_files/test_counts_file.csv
 Is this correct? (Y/N/Q) Y
-Full path to meta data file: test_set/input_files/test_metadata_file_with_types.csv
+Full path to meta data file (no whitespaces): test_set/input_files/test_metadata_file_with_types.csv
 Is this correct? (Y/N/Q) Y
 Name of output file (no whitespaces): test_set/results/test_data_output
 Is this correct? (Y/N/Q) Y
