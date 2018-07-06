@@ -58,7 +58,7 @@ Name of output file (no whitespaces): test_set/results/test_data_output
 Is this correct? (Y/N/Q) Y
 ```
 
-This will print a some output (for logging and error purposes) to the screen.  All of the actual output files will be in the output file location the user specified.  In this case is is test_set/results/ with all output files containing the prefix **test_data_ouput**.
+This will print out some output (for logging and error purposes) to the screen/standard out.  All of the actual output files will be located in the output file location the user specified.  In this case is is test_set/results/ with all output files containing the prefix **test_data_ouput**.
 
 
 
