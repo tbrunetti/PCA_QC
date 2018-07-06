@@ -202,7 +202,7 @@ model_pcs <- function(pca_matrix, metadata_file, output_name, cat_vars, num_vars
 
     # create a heatmap of these values, value is -log10(p-val) and color is the adj R-sq value
     
-    heatmap.2(as.matrix(adjRsq), cellnote=pvalues, notecol = "black", notecex = 0.5, cexRow = 0.3, dendrogram = "none", col=colorRampPalette(c("white", "yellow", "red"))(10))
+    heatmap.2(as.matrix(adjRsq), cellnote=pvalues, notecol = "black", notecex = 0.5, cexRow = 1, cexCol = 1, dendrogram = "none", col=colorRampPalette(c("white", "yellow", "red"))(10), margins = c(5, 10))
     print("heatmap completed")
     dev.off()
     }
@@ -214,44 +214,6 @@ model_pcs <- function(pca_matrix, metadata_file, output_name, cat_vars, num_vars
     }
   )
 }
-
-#*********************************************End of function*********************************************
-
-#---------------------------regress out variables of interest-------------------------------------------------
-# for each variable that is to be regressed a linear model must be made and the residuals of the linear model
-# must be extract and replace the old PC matrix
-# regress out FlowcellBatch
-#for (pc in seq(1,dim(pca_matrix$rotation)[2])){
-#  linear_model <- lm(pca_matrix$x[,pc] ~ na.omit(as.factor(metadata_sorted[,'FlowcellBatch'])))
-#  pca_matrix$x[,pc]  <- linear_model$residuals
-#}
-# regress out Sex
-#for (pc in seq(1,dim(pca_matrix$rotation)[2])){
-#  linear_model <- lm(pca_matrix$x[,pc] ~ na.omit(as.factor(metadata_sorted[,'Sex'])))
-#  pca_matrix$x[,pc]  <- linear_model$residuals
-#}
-# regress out 5 prime to 3 prime bias
-#for (pc in seq(1,dim(pca_matrix$rotation)[2])){
-#  linear_model <- lm(pca_matrix$x[,pc] ~ na.omit(metadata_sorted[,'UF_MEDIAN_5PRIME_TO_3PRIME_BIAS']))
-#  pca_matrix$x[,pc]  <- linear_model$residuals
-#}
-# regress out RIN
-#for (pc in seq(1,dim(pca_matrix$rotation)[2])){
-#  linear_model <- lm(pca_matrix$x[,pc] ~ na.omit(metadata_sorted[,'RIN']))
-#  pca_matrix$x[,pc]  <- linear_model$residuals
-#}
-# regress out PMI
-#for (pc in seq(1,dim(pca_matrix$rotation)[2])){
-#  linear_model <- lm(pca_matrix$x[,pc] ~ na.omit(metadata_sorted[,'PMI']))
-#  pca_matrix$x[,pc]  <- linear_model$residuals
-#}
-
-# call function again on regressed out variables
-#model_pcs(pca_matrix)
-# writes the variables that were regressed out, NOTE this must be changed manually!!!!!!
-#mtext("vars regressed: FlowcellBatch, Sex, UF 5-3 bias, RIN, PMI", side=3, line=0)
-# saves and closes newly created PDF
-#dev.off()
 
 
 
@@ -400,4 +362,41 @@ validation_test <- function(){
   print(summary(linear_model)$adj.r.squared)
   print(-log10(anova(linear_model)$Pr[1]))
 }
+
+
+#-------------------**BETA TESTING** regress out variables of interest to check linear model fits------------------
+# for each variable that is to be regressed a linear model must be made and the residuals of the linear model
+# must be extract and replace the old PC matrix
+# regress out FlowcellBatch
+#for (pc in seq(1,dim(pca_matrix$rotation)[2])){
+#  linear_model <- lm(pca_matrix$x[,pc] ~ na.omit(as.factor(metadata_sorted[,'FlowcellBatch'])))
+#  pca_matrix$x[,pc]  <- linear_model$residuals
+#}
+# regress out Sex
+#for (pc in seq(1,dim(pca_matrix$rotation)[2])){
+#  linear_model <- lm(pca_matrix$x[,pc] ~ na.omit(as.factor(metadata_sorted[,'Sex'])))
+#  pca_matrix$x[,pc]  <- linear_model$residuals
+#}
+# regress out 5 prime to 3 prime bias
+#for (pc in seq(1,dim(pca_matrix$rotation)[2])){
+#  linear_model <- lm(pca_matrix$x[,pc] ~ na.omit(metadata_sorted[,'UF_MEDIAN_5PRIME_TO_3PRIME_BIAS']))
+#  pca_matrix$x[,pc]  <- linear_model$residuals
+#}
+# regress out RIN
+#for (pc in seq(1,dim(pca_matrix$rotation)[2])){
+#  linear_model <- lm(pca_matrix$x[,pc] ~ na.omit(metadata_sorted[,'RIN']))
+#  pca_matrix$x[,pc]  <- linear_model$residuals
+#}
+# regress out PMI
+#for (pc in seq(1,dim(pca_matrix$rotation)[2])){
+#  linear_model <- lm(pca_matrix$x[,pc] ~ na.omit(metadata_sorted[,'PMI']))
+#  pca_matrix$x[,pc]  <- linear_model$residuals
+#}
+
+# call function again on regressed out variables
+#model_pcs(pca_matrix)
+# writes the variables that were regressed out, NOTE this must be changed manually!!!!!!
+#mtext("vars regressed: FlowcellBatch, Sex, UF 5-3 bias, RIN, PMI", side=3, line=0)
+# saves and closes newly created PDF
+#dev.off()
 
