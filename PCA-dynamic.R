@@ -165,15 +165,18 @@ model_pcs <- function(pca_matrix, metadata_file, output_name, cat_vars, num_vars
       total_pcs = length(all_vars)
     }
     
-    for (pc in seq(1,dim(pca_matrix$rotation)[2])){
-      print(pc)
-      for (variable in seq(1,total_pcs)){
+    #for (pc in seq(1,dim(pca_matrix$rotation)[2])){
+    for (pc in seq(1,10)){    print("HERE HERE") 
+        print(pc)
+        print(all_vars)
+      for (variable in seq(1,length(all_vars))){
         print(all_vars[variable])
         if(all_vars[variable] %in% cat_vars){
-          linear_model <- lm(pca_matrix$x[,pc] ~ na.omit(as.factor(metadata_file[, all_vars[variable]])))
+          linear_model <- lm(pca_matrix$x[,pc] ~ as.factor(metadata_file[, all_vars[variable]]), na.action = na.omit)
         }
         else if(all_vars[variable] %in% num_vars){
-          linear_model <- lm(pca_matrix$x[,pc] ~ na.omit(metadata_file[,all_vars[variable]]))
+          print(all_vars[variable])
+          linear_model <- lm(pca_matrix$x[,pc] ~ metadata_file[,all_vars[variable]], na.action = na.omit)
         }
         else{
           stop("variable not listed as categorical or numerical.  Please correct.")
@@ -188,9 +191,9 @@ model_pcs <- function(pca_matrix, metadata_file, output_name, cat_vars, num_vars
     # get the row and column names match the p-values
     #print(factors_affecting_pcs)
     rownames(pvalues) <- all_vars
-    print(pvalues)
+    #print(rownames(pvalues))
     colnames(pvalues) <- unlist(lapply(seq(1,total_pcs),function(x) paste(c('PC',x),collapse='')))
-    print(pvalues)
+    #print(colname(pvalues))
     
     # get the row and column names matching the adj R-sq values
     rownames(adjRsq) <- all_vars
@@ -200,9 +203,11 @@ model_pcs <- function(pca_matrix, metadata_file, output_name, cat_vars, num_vars
     is.num <- sapply(pvalues, is.numeric)
     pvalues[is.num] <- lapply(pvalues[is.num], round, 3)
 
+    print(adjRsq)
+    
     # create a heatmap of these values, value is -log10(p-val) and color is the adj R-sq value
     
-    heatmap.2(as.matrix(adjRsq), cellnote=pvalues, notecol = "black", notecex = 0.5, cexRow = 1, cexCol = 1, dendrogram = "none", col=colorRampPalette(c("white", "yellow", "red"))(10), margins = c(5, 10))
+    heatmap.2(as.matrix(adjRsq), cellnote=pvalues, notecol = "black", notecex = 0.5, cexRow = 0.7, cexCol = 1, dendrogram = "none", col=colorRampPalette(c("white", "yellow", "red"))(10), margins = c(5, 10))
     print("heatmap completed")
     dev.off()
     }
